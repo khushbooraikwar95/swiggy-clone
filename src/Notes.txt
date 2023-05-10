@@ -1,0 +1,22 @@
+What is UseState ?
+
+useState is just a javascript function provided us by facebook developer,
+to create a local state variable in out component
+to use that we first do named import then call this function inside our
+component before return method. It returns an Array which contains two parameter
+first is the variable name we want to use and another is the function to update that variable
+ const [searchText, setSearchText] = useState("")
+
+ React uses the one way data binding for that we use useState, other frameworks
+ like Angular Js they uses Two way data binding which is not good and bery non-performent
+
+Interview Question:
+Why do we need this state varibales when we have the local variables?
+Answer: Suppose we a normal variables and Whenever the variable changes
+react would not know who updated the varibale, to do that everytime you want this vairbale to be in sink with UI,
+thats why you need to use state variable. becuase all its have a one way binding concept
+
+
+Hooks:
+Never ever write a useState in If Else statement,
+ForLoops
