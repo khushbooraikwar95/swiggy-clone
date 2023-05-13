@@ -161,3 +161,10 @@ useEffectAsync(async () => {
   }
 });
 With these three approaches, we can now easily use the await operator with async functions in the useEffect() hook.
+
+
+Q: How can you improve performance of you react application?
+A :   1.Chunkingm code splitting, Dynamic Bundling, Lazy loading, on Demand Loading, Dynamic import
+all are the same thing for increaing the performance of rect application
+
+2. using CDN
