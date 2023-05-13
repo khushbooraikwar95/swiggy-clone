@@ -20,3 +20,144 @@ thats why you need to use state variable. becuase all its have a one way binding
 Hooks:
 Never ever write a useState in If Else statement,
 ForLoops
+
+
+Q: UseEffect is not equivalent to ComponentDidMount -
+Never ever compare them
+1. In use effect if we dont pass dependency array it will be called after every render but 
+in class besed first componenetDidMount is called and after every subseqent render it is updated that means componentDidUpdated will be called.
+
+2. If we give empty dependency array it will be called ony once
+
+
+
+
+Q How will you clear setIntervals and setTimeouts from your calss based
+and functional based component.
+
+A: You need to write this.clearInerval/clearSetTimeout in componentWillUnmount() method in class based component
+and write clearInerval/clearSetTImeout inside your useEffect return()=>{} function in functional based components.
+eg: 
+useEffect(()=>{
+    //code
+
+
+return()=>{
+    setIntervals(timer)
+    clg("useEffect return")
+}
+},[])
+
+
+Q: Why we can't use async in useEffect hook?
+A: async/await Problem: async Callbacks Can’t Be Passed to useEffect()
+Perhaps you would prefer to use the async/await syntax in place of then/catch. You might try doing this by making the callback passed to useEffect() async.
+
+This isn’t a good idea though, and if you’re using a linter it will inform you of this right away.
+// ❌ Your linter: don't do this!
+useEffect(async () => {
+  try {
+    const books = await fetchBooks();
+    setBooks(books);
+  } catch {
+    console.log('Error occured when fetching books');
+  }
+}, []);
+
+our linter complains because the first argument of useEffect() is supposed to be a function that either returns nothing or returns a function to clean up side effects. But async functions always return a Promise (implicitly or explicitly), and Promise objects can’t be called as functions. This could cause real issues in your React app, such as memory leaks.
+useEffect(async () => {
+  const observer = () => {
+    // do stuff
+  };
+
+  await fetchData();
+
+  observable.subscribe(observer);
+
+  // Memory leak!
+  return () => {
+    observable.unsubscribe(observer);
+  };
+}, []);
+In this example, because the callback function is async, it doesn’t actually return the defined clean-up function, but rather a Promise object that is resolved with the clean-up function. Hence, this clean-up function is never called, and the observer never unsubscribed from the observable, resulting in a memory leak.
+So how can we fix this? How can we use the await operator with an async function in the useEffect() hook?
+
+async/await.Solution 1: Call async Function in IIFE
+One straightforward way to solve this problem is to await the async function in an immediately invoked function expression (IIFE):
+
+
+const [books, setBooks] = useState([]);
+
+useEffect(() => {
+  (async () => {
+    try {
+      const books = await fetchBooks();
+      setBooks(books);
+    } catch (err) {
+      console.log('Error occured when fetching books');
+    }
+  })();
+}, []);
+As the name suggests, an IIFE is a function that runs as soon as it is defined. They are used to avoid polluting the global namespace and in scenarios where trying an await call could cause problems in the scope containing the IIFE (e.g., in the useEffect() hook).
+
+async/await Solution 2: Call async Function in Named Function
+Alternatively, you can await the async function inside a named function:
+
+useEffect(() => {
+
+  // Named function "getBooks"
+  async function getBooks() {
+    try {
+      const books = await fetchBooks();
+      setBooks(books);
+    } catch (err) {
+      console.log('Error occured when fetching books');
+    }
+  }
+
+  // Call named function
+  getBooks();
+}, []);
+Remember the example using the observable pattern? Here’s how we can use a named async function to prevent the memory leak that occurred:
+// ✅ Callback is not async
+useEffect(() => {
+  const observer = () => {
+    // do stuff
+  };
+
+  // Named function "fetchDataAndSubscribe"
+  async function fetchDataAndSubscribe() {
+    await fetchData();
+    observable.subscribe(observer);
+  }
+
+  fetchDataAndSubscribe();
+
+  // ✅ No memory leak
+  return () => {
+    observable.unsubscribe(observer);
+  };
+}, []);
+async/await Solution 3: Create Custom Hook
+We can also create a custom hook that behaves similarly to useEffect() and can accept an async callback without causing any issues.
+
+The custom hook could be defined this way:
+
+export function useEffectAsync(effect, inputs) {
+  useEffect(() => {
+    return effect();
+  }, inputs);
+}
+And we’ll be able to call it from multiple places in our code like this:
+
+const [books, setBooks] = useState([]);
+
+useEffectAsync(async () => {
+  try {
+    const books = await fetchBooks();
+    setBooks(books);
+  } catch (err) {
+    console.log('Error occured when fetching books');
+  }
+});
+With these three approaches, we can now easily use the await operator with async functions in the useEffect() hook.

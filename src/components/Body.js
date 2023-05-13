@@ -1,15 +1,9 @@
-import { restaurantList } from "../config";
+// import { restaurantList } from "../config";
 import RestaurantCard from "./Restruant";
 import React, { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
-
-function filterData(searchText, restaurants) {
-  const filterData = restaurants.filter((restaurant) =>
-    restaurant?.data?.name.toLowerCase().includes(searchText.toLowerCase())
-  );
-  return filterData;
-}
+import { filterData } from "../utils/helper";
 
 // Body Component for body section: It contain all restaurant cards
 // We are mapping restaurantList array and passing JSON data to RestaurantCard component as props with unique key as index

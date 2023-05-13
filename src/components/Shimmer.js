@@ -3,7 +3,7 @@ import React from "react";
 function Shimmer() {
   return (
     <div className="restaurant-list">
-      {Array(18)
+      {Array(15)
         .fill("")
         .map((e, index) => (
           <div key={index} className="shimmer-card"></div>

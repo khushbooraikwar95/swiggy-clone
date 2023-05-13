@@ -1,6 +1,9 @@
 export const IMG_LOGO_URL =
   "https://play-lh.googleusercontent.com/A8jF58KO1y2uHPBUaaHbs9zSvPHoS1FrMdrg8jooV9ftDidkOhnKNWacfPhjKae1IA=w240-h480-rw";
 
+export const FETCH_MENU_RUL =
+  "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.907301358058373&lng=77.61228673160076&restaurantId=";
+
 export const restruantLists = [
   {
     id: 1,
