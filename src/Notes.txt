@@ -168,3 +168,11 @@ A :   1.Chunkingm code splitting, Dynamic Bundling, Lazy loading, on Demand Load
 all are the same thing for increaing the performance of rect application
 
 2. using CDN
+
+
+
+Q: Taiwind CSS framework's pros:
+CSS on the go (in the same file)
+resability
+less bundle size
+Flexible UI(Customizations)
