@@ -176,3 +176,11 @@ CSS on the go (in the same file)
 resability
 less bundle size
 Flexible UI(Customizations)
+Faster developement no duplicate css
+debuggin is faster
+newwer way of write css
+
+Cons:
+It comes with the High learning curve(you need to Remember classnames initially)
+When new people comes and see the code of tailwind their mind will be blow up
+Most people in the industry didnt see this kind of coding style so that hasitate to use it
