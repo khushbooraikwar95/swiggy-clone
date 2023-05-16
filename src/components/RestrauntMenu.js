@@ -4,17 +4,18 @@ import Shimmer from "./Shimmer";
 import useRestaurant from "../utils/useRestaurant";
 
 const RestrauntMenu = () => {
-  const { resId } = useParams();
+  const { id } = useParams();
+  console.log("resId", useParams());
   //how to read a dynamic url params
 
-  const restsaurant = useRestaurant(resId);
+  const restsaurant = useRestaurant(id);
 
   return !restsaurant ? (
     <Shimmer />
   ) : (
     <div>
       <div>
-        <h1>Restraunt id: {resId}</h1>
+        <h1>Restraunt id: {id}</h1>
         <h2>{restsaurant.name}</h2>
         <img alt="logo" src={IMG_CDN_URL + restsaurant.cloudinaryImageId}></img>
         <h2>{restsaurant.area}</h2>

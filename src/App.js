@@ -1,6 +1,6 @@
 import "./App.css";
 import "./index.css";
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import Header from "./components/Header";
 import Body from "./components/Body";
 import Footer from "./components/Footer";
@@ -17,6 +17,11 @@ const Instamart = lazy(() => import("./components/Instamart"));
 
 //Main Component
 const AppLayout = () => {
+  const [user, setUser] = useState({
+    name: "Khushboo",
+    email: "Khush@gmail.com",
+  });
+
   return (
     <React.Fragment>
       <Header />
