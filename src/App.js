@@ -11,6 +11,7 @@ import Contact from "./components/Contact";
 import RestrauntMenu from "./components/RestrauntMenu";
 import Profile from "./components/Profile";
 import Shimmer from "./components/Shimmer";
+import UserContext from "./utils/userContext";
 
 const Instamart = lazy(() => import("./components/Instamart"));
 // Up on demand loading -> upon render -> suspend loading
@@ -23,11 +24,13 @@ const AppLayout = () => {
   });
 
   return (
-    <React.Fragment>
-      <Header />
-      <Outlet />
-      <Footer />
-    </React.Fragment>
+    <UserContext.Provider value={{ user: user }}>
+      <React.Fragment>
+        <Header />
+        <Outlet />
+        <Footer />
+      </React.Fragment>
+    </UserContext.Provider>
   );
 };
 

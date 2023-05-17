@@ -184,3 +184,16 @@ Cons:
 It comes with the High learning curve(you need to Remember classnames initially)
 When new people comes and see the code of tailwind their mind will be blow up
 Most people in the industry didnt see this kind of coding style so that hasitate to use it
+
+
+Chapater-12 Redux
+
+what are the two types of layer in application
+1. UI layer 2. Data Layer
+
+why do we need redux?
+we need it to manage the huge amount of data accorss our application
+
+
+
+

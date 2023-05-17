@@ -1,12 +1,16 @@
 import { IMG_LOGO_URL } from "../config";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
+import UserContext from "../utils/userContext";
 
 function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const isOnline = useOnline();
+
+  const { user } = useContext(UserContext);
+
   return (
     <div className="flex justify-between bg-pink-50 shadow-lg ">
       <img className="h-16 pl-2" alt="swiggy-logo" src={IMG_LOGO_URL} />
@@ -27,7 +31,8 @@ function Header() {
           </Link>
         </ul>
       </div>
-      <h1>{isOnline ? "✅" : "🔴"}</h1>
+      <span>{isOnline ? "✅" : "🔴"}</span>
+      <h1 className="p-10 font-bold text-red-800">{user.name}</h1>
       {isLoggedIn ? (
         <button onClick={() => setIsLoggedIn(false)}>Logout</button>
       ) : (
