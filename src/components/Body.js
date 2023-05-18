@@ -1,7 +1,7 @@
 // import { restaurantList } from "../config";
-import RestaurantCard from "./Restruant";
+import RestaurantCard from "./RestruantCard";
 import React, { useState, useEffect } from "react";
-import Shimmer from "./Shimmer";
+import { ShimmerforAllRestaurants } from "./Shimmer";
 import { Link } from "react-router-dom";
 import { filterData } from "../utils/helper";
 import useOnline from "../utils/useOnline";
@@ -40,7 +40,7 @@ const Body = () => {
   //   return <h1>No Restraunt match your filter!!!</h1>;
 
   return allRestaurants.length === 0 ? (
-    <Shimmer />
+    <ShimmerforAllRestaurants />
   ) : (
     <React.Fragment>
       <div className="search-container p-5 bg-pink-50 my-5">

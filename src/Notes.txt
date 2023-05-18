@@ -196,4 +196,60 @@ we need it to manage the huge amount of data accorss our application
 
 
 
+Redux add to cart functionality example:
+We have one Redux store on a central place where we have slices of
+different stores.
+when we clicks on Add to cart button we cannot directly update our store(When there is large
+sacle of application u dont want random components to randmly modify our store as we need to keeep
+a track of our application, so we need a process to update it)
+we update it through dispatching an action which will call one reducer function,
+our reducer will update the redux slice store.
 
+
+how can I read the cart now suppose we added two items how we will read it from store?
+for that we'll use selector
+Selector: If u want to read cart you have to call selector and it willgive the information that will update the cart
+
+
+Add Item --> dispatches an action--> reducer -->updates-->store(slice)--> selector--> This will update the cart(shows count 1 in cart if we add two items)
+
+
+selector is a hook which is a function at the end of the dynamic
+
+
+subscribe: cart component will be subscribing the store using selector hook. subscribing means whenever store will be updated my cart will also be updated
+
+
+
+
+Redux tootlkit:
+
+we use below things
+
+createStore
+configureStore()- RTK
+
+Provide my store to app
+<Provider store = {store}> -import from react-redux
+
+slice-RTK- createSlice({
+  name:"",
+  initialState:
+  reducers: {
+    addItem : (state, action)=> {state= action.payload}
+  }}
+})
+
+
+export const {addItem, removeItem}= cartSlice.actions
+
+export default cartSlice.reducer
+
+Put that Slice into store
+
+{
+  reducer:{
+        cart : cartSlice,
+        user: userSlice
+  }
+}

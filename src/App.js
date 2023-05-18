@@ -10,8 +10,11 @@ import Error from "./components/Error";
 import Contact from "./components/Contact";
 import RestrauntMenu from "./components/RestrauntMenu";
 import Profile from "./components/Profile";
-import Shimmer from "./components/Shimmer";
+import { ShimmerforAllRestaurants } from "./components/Shimmer";
 import UserContext from "./utils/userContext";
+import { Provider } from "react-redux";
+import store from "./utils/store";
+import Cart from "./components/Cart";
 
 const Instamart = lazy(() => import("./components/Instamart"));
 // Up on demand loading -> upon render -> suspend loading
@@ -24,13 +27,15 @@ const AppLayout = () => {
   });
 
   return (
-    <UserContext.Provider value={{ user: user }}>
-      <React.Fragment>
-        <Header />
-        <Outlet />
-        <Footer />
-      </React.Fragment>
-    </UserContext.Provider>
+    <Provider store={store}>
+      <UserContext.Provider value={{ user: user }}>
+        <React.Fragment>
+          <Header />
+          <Outlet />
+          <Footer />
+        </React.Fragment>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -65,10 +70,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/instamart",
         element: (
-          <Suspense fallback={<Shimmer />}>
+          <Suspense fallback={<ShimmerforAllRestaurants />}>
             <Instamart />
           </Suspense>
         ),
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },
