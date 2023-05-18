@@ -20,6 +20,10 @@ const RestrauntMenu = () => {
     dispatch(addItem(item));
   };
 
+  const removeFoodItem = (item) => {
+    dispatch(remmoveItem(item));
+  };
+
   return !restsaurant ? (
     <ShimmerforOneRestuarant />
   ) : (
@@ -58,6 +62,12 @@ const RestrauntMenu = () => {
                       onClick={() => addFoodItem(item)}
                     >
                       +
+                    </button>
+                    <button
+                      className=" p-1 m-1 bg-green-500"
+                      onClick={() => removeFoodItem(item)}
+                    >
+                      -
                     </button>
                   </h3>
                   <p className="text-sm font-bold">
