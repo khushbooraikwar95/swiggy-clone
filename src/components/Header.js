@@ -18,7 +18,12 @@ function Header() {
 
   return (
     <div className="flex justify-between bg-pink-50 shadow-lg ">
-      <img className="h-16 pl-2" alt="swiggy-logo" src={IMG_LOGO_URL} />
+      <img
+        data-testid="logo"
+        className="h-16 pl-2"
+        alt="swiggy-logo"
+        src={IMG_LOGO_URL}
+      />
       <div className="nav-items">
         <ul className="flex py-8 ">
           <Link to="/">
@@ -34,11 +39,13 @@ function Header() {
             <li className="px-2">Instamart</li>
           </Link>
           <Link to="/cart">
-            <li className="px-2">Cart - {cartItems.length} items</li>
+            <li data-testid="cart" className="px-2">
+              Cart - {cartItems.length} items
+            </li>
           </Link>
         </ul>
       </div>
-      <span>{isOnline ? "✅" : "🔴"}</span>
+      <span data-testid="online-status">{isOnline ? "✅" : "🔴"}</span>
       <h1 className="p-10 font-bold text-red-800">{user.name}</h1>
       {isLoggedIn ? (
         <button onClick={() => setIsLoggedIn(false)}>Logout</button>

@@ -253,3 +253,34 @@ Put that Slice into store
         user: userSlice
   }
 }
+
+
+
+Chapter-23
+
+TDD- Test drivern development we write our testcases even before we write our code
+in inducstry we dont follow this approach generally
+
+Differenct type of Testing-
+Manul Testing
+Automation Testing : code testing your code - Selenium
+End to End testing : Covers entire user journey( using selecnium and cyprus)
+Unit Testing :  Core job of developers
+Integraion Testing :
+
+Jest : Javascript testing framework
+RTL : React testing library uses Jest behind the scene
+ 
+Setup- 
+
+ First install testing library:
+ npm install --save-dev @testing-library/react
+ 
+ then Jest-
+ npm i -D jest
+
+ configure jest-
+ Installed jest-enviroment -jsdom
+create my first test
+
+then import error will come so we need to configure Jest Babel config 

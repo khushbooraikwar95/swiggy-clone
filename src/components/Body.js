@@ -49,9 +49,11 @@ const Body = () => {
           className="focus:bg-blue-50 p-2 m-2"
           placeholder="Search "
           value={searchText}
+          data-testid="search-input"
           onChange={(e) => setSearchText(e.target.value)}
         ></input>
         <button
+          data-testid="search-btn"
           className="p-2 m-2 bg-purple-700 text-white rounded-md hover:bg-sky-700"
           onClick={() => {
             // filter the data
@@ -63,7 +65,7 @@ const Body = () => {
           Search
         </button>
       </div>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap" data-testid="res-list">
         {filteredRestaurants.map((restaurant) => {
           return (
             <Link

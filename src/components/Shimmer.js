@@ -2,7 +2,7 @@ import React from "react";
 
 export function ShimmerforAllRestaurants() {
   return (
-    <div className="flex flex-wrap ">
+    <div className="flex flex-wrap " data-testid="shimmer">
       {Array(15)
         .fill("")
         .map((e, index) => (
