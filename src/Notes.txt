@@ -283,4 +283,8 @@ Setup-
  Installed jest-enviroment -jsdom
 create my first test
 
-then import error will come so we need to configure Jest Babel config 
+then import error will come so we need to configure -
+Jest Babel config (import was failing)
+wrote expext sum testJSX was failed then added preset-react
+then we did Provider, StaticRouter
+
